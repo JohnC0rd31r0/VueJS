@@ -1,0 +1,43 @@
+<script src="https://unpkg.com/vue@next"></script>
+
+<div id="app">
+    <!-- 1) Mostrar uma mensagem de alerta ao clicar no botão -->
+    <div>
+        <button v-on:click="clicarAlerta">Alert</button>
+    </div>
+    <!-- 2) Escutar o evento pressionar (keydown) de cada tecla e enviar o valor na propriedade ('valor') (dica: event.target.value retorna essa valor) -->
+    <div>
+        <input @keydown="enviarValor" type="text" />
+        <p>{{ valor }}</p>
+        
+    </div>
+    <!-- 3) Ajustar o exercício anterior para apenar enviar o valor caso a tecla ENTER for pressionada -->
+    <div>
+        <input v-on:keyup.enter = "enviarValor2" type="text" />
+        <p> {{ valor2 }}</p>
+    </div>
+</div>
+
+<script>
+    const app = {
+        data() {
+            return {
+                valor: "",
+                valor2: "",
+            }
+        },
+        methods: {
+            clicarAlerta() {
+                alert("Olá");
+            },
+            enviarValor(event) {
+                this.valor = event.target.value
+            },
+            enviarValor2(event) {
+                this.valor2 = event.target.value
+            },
+        },
+    }
+
+    Vue.createApp(app).mount("#app")
+</script>
